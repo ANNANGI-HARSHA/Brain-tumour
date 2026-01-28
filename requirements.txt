@@ -1,0 +1,39 @@
+# Brain Tumor Detection and Segmentation
+# Python Dependencies
+
+# Core Deep Learning
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+
+# Medical Imaging
+nibabel>=5.0.0
+SimpleITK>=2.3.0
+
+# Computer Vision & Image Processing
+opencv-python>=4.8.0
+Pillow>=10.0.0
+scikit-image>=0.21.0
+
+# Data Processing
+numpy>=1.24.0
+pandas>=2.0.0
+scikit-learn>=1.3.0
+
+# Augmentation
+albumentations>=1.3.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.17.0
+
+# Web Application
+streamlit>=1.28.0
+
+# Progress bars
+tqdm>=4.66.0
+
+# Utilities
+PyYAML>=6.0
+colorama>=0.4.6

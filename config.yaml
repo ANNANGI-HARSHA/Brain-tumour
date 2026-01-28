@@ -1,0 +1,134 @@
+# Brain Tumor Segmentation - Configuration Template
+
+# ==============================================================================
+# Model Configuration
+# ==============================================================================
+
+model:
+  name: "resunet"  # Options: resunet, attention_unet, unet3d, lightweight_unet3d
+  in_channels: 1
+  out_channels: 1
+  base_channels: 64  # Reduce to 32 for 3D models or limited memory
+
+# ==============================================================================
+# Data Configuration
+# ==============================================================================
+
+data:
+  data_dir: "./dataset"
+  img_size: 256  # Image will be resized to (img_size, img_size)
+  batch_size: 8
+  num_workers: 4
+  val_split: 0.2
+  test_split: 0.1
+  is_3d: false  # Set to true for 3D U-Net models
+
+# ==============================================================================
+# Training Configuration
+# ==============================================================================
+
+training:
+  epochs: 100
+  learning_rate: 0.0001
+  weight_decay: 0.00001
+  loss: "bce_dice"  # Options: dice, bce_dice, focal, tversky
+  
+  # Optimizer
+  optimizer: "adam"  # Options: adam, adamw, sgd
+  
+  # Scheduler
+  use_scheduler: true
+  scheduler_patience: 5
+  scheduler_factor: 0.5
+  
+  # Early stopping
+  early_stopping: true
+  patience: 15
+  min_delta: 0.0
+  
+  # Mixed precision
+  use_amp: true  # Automatic mixed precision (requires CUDA)
+  
+  # Checkpointing
+  save_best_only: false
+  save_frequency: 5  # Save checkpoint every N epochs
+
+# ==============================================================================
+# Inference Configuration
+# ==============================================================================
+
+inference:
+  threshold: 0.5  # Prediction threshold for binarization
+  device: "cuda"  # Options: cuda, cpu
+  batch_size: 1
+
+# ==============================================================================
+# Augmentation Configuration
+# ==============================================================================
+
+augmentation:
+  horizontal_flip: 0.5
+  vertical_flip: 0.5
+  rotation_limit: 20
+  brightness_limit: 0.2
+  contrast_limit: 0.2
+  gaussian_noise: 0.3
+  elastic_transform: 0.3
+
+# ==============================================================================
+# Paths Configuration
+# ==============================================================================
+
+paths:
+  save_dir: "./saved_models"
+  log_dir: "./logs"
+  output_dir: "./predictions"
+  report_dir: "./report"
+
+# ==============================================================================
+# Hardware Configuration
+# ==============================================================================
+
+hardware:
+  device: "auto"  # Options: auto, cuda, cpu
+  gpu_ids: [0]  # For multi-GPU training: [0, 1, 2, 3]
+  num_workers: 4
+  pin_memory: true
+
+# ==============================================================================
+# Logging Configuration
+# ==============================================================================
+
+logging:
+  tensorboard: false
+  log_frequency: 10  # Log every N batches
+  plot_predictions: true
+  save_training_curves: true
+
+# ==============================================================================
+# Notes
+# ==============================================================================
+
+# For Quick Testing:
+#   - epochs: 10
+#   - batch_size: 4
+#   - img_size: 128
+
+# For Best Performance:
+#   - model: attention_unet
+#   - epochs: 150
+#   - batch_size: 16
+#   - img_size: 256
+#   - use_scheduler: true
+
+# For Limited GPU Memory:
+#   - batch_size: 2
+#   - img_size: 128
+#   - base_channels: 32
+#   - use_amp: true
+
+# For 3D Models:
+#   - model: lightweight_unet3d
+#   - is_3d: true
+#   - batch_size: 1-2
+#   - base_channels: 16-32

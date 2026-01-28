@@ -1,0 +1,80 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environments
+venv/
+ENV/
+env/
+.venv
+
+# PyTorch
+*.pth
+*.pt
+*.ckpt
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+logs/
+*.log
+tensorboard/
+
+# Dataset (large files)
+Training/
+Testing/
+dataset/images/
+dataset/masks/
+brats/
+training/glioma/
+training/meningioma/
+training/notumor/
+training/pituitary/
+
+# Model outputs
+saved_models/*.pth
+saved_models/*.pt
+predictions/
+output/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# System files
+Thumbs.db
+.DS_Store
+
+# Project specific
+*.nii
+*.nii.gz
+!example.nii.gz
